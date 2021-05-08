@@ -112,4 +112,53 @@ for (let i = 0; i < Allcells.length; i++) {
     });
 }
 
-Allcells[0].click();
+// Allcells[0].click();
+
+
+
+
+
+document.querySelectorAll(".grid .col").forEach(e => {
+    e.addEventListener("click", (event) => {
+        if (event.target.style.fontWeight == "bold") {
+            document.querySelector("#bold").style.backgroundColor = "lightgrey"
+            document.querySelector("#bold").style.backgroundRadiys = "5px"
+        } else {
+            document.querySelector("#bold").style.backgroundColor = "#ffffff"
+            document.querySelector("#bold").style.backgroundRadiys = "5px"
+        }
+
+        if (event.target.style.fontStyle == "italic") {
+            document.querySelector("#italic").style.backgroundColor = "lightgrey"
+            document.querySelector("#italic").style.backgroundRadiys = "5px"
+        } else {
+            document.querySelector("#italic").style.backgroundColor = "#ffffff"
+            document.querySelector("#italic").style.backgroundRadiys = "5px"
+        }
+
+        if (event.target.style.textDecoration == "underline") {
+            document.querySelector("#underline").style.backgroundColor = "lightgrey"
+            document.querySelector("#underline").style.backgroundRadiys = "5px"
+        } else {
+            document.querySelector("#underline").style.backgroundColor = "#ffffff"
+            document.querySelector("#underline").style.backgroundRadiys = "5px"
+        }
+
+
+
+        document.querySelector("#styler-align").value = event.target.style.textAlign;
+        document.querySelector("#font-family").value = event.target.style.fontFamily;
+        document.querySelector("#font-size").value = event.target.style.fontSize;
+        if (event.target.style.textAlign == "") {
+            document.querySelector("#styler-align").selectedIndex = "0"
+        }
+        if (event.target.style.fontFamily == "") {
+            document.querySelector("#font-family").selectedIndex = "0"
+        }
+        if (event.target.style.fontSize == "") {
+            document.querySelector("#font-size").selectedIndex = "0"
+        }
+        event.target.style.resize = "both"
+    })
+})
+
