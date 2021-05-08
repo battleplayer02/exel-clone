@@ -3,10 +3,48 @@ body {
     outline: navajowhite;
 }
 
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+    transition: 100ms all;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    transition: 100ms all;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: grey;
+    border-radius: 10px;
+    transition: 100ms all;
+}
+
+::-webkit-scrollbar:horizontal {
+    background: lightgrey;
+    border-radius: 10px;
+    height: 10px;
+    transition: 100ms all;
+}
+
+/* Handle on hover */
+/* 
+::-webkit-scrollbar-thumb:hover {
+    background: lightgrey;
+    transition: 100ms all;
+} */
+
 * {
     color: #5F6368;
     box-sizing: border-box;
     font-family: sans-serif;
+    transition: 100ms all;
 }
 
 /* menu */
@@ -82,9 +120,11 @@ body {
     display: flex;
     align-items: center;
 }
-.styler-btn-container input{
+
+.styler-btn-container input {
     margin-left: 10px;
 }
+
 .styler-btn-container :first-child {
     border-left: solid 1px lightgrey;
 }
@@ -137,6 +177,7 @@ body {
 }
 
 .address-box {
+    font-weight: 700;
     border: none;
     outline: none;
     /* font-size: 1rem; */
@@ -258,7 +299,7 @@ body {
 
 .col:focus {
     box-sizing: border-box;
-    border: blue solid 2px;
+    border: #1A73E8 solid 2px;
 }
 
 .left-col {
@@ -292,4 +333,19 @@ body {
     position: absolute;
     top: 30px;
     left: 30px;
+}
+
+.grid .col {
+    position: relative;
+}
+
+.grid .col:focus::after {
+    content: " ";
+    background-color: #1A73E8;
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    z-index: 10;
+    right: -5px;
+    bottom: -5px;
 }
