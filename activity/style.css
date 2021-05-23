@@ -218,6 +218,7 @@ body {
     display: flex;
     height: 100%;
     overflow-x: scroll;
+    gap: 1px;
 }
 
 .sheets-list::-webkit-scrollbar {
@@ -240,17 +241,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-right: #5F6368 solid 1px;
+    border: #5F6368 solid 1px;
 }
 
 .active-sheet {
-    border-left: 1px solid grey;
-    border-right: 1px solid grey;
-    border-top: 1px solid grey;
     background-color: white;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    transform: scale(1.1);
+    /* border-top-left-radius: 5px; */
+    /* border-top-right-radius: 5px; */
+    /* transform: scale(1.1); */
+    /* border:5px solid gray; */
 }
 
 /************************ grid container css *************************************/
@@ -268,6 +267,7 @@ body {
 }
 
 .top-row {
+    z-index: 10;
     height: 30px;
     background-color: #F8F9FA;
     display: flex;
