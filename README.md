@@ -11,3 +11,4 @@ Tech Used 🚀:
 - Javascript
 
 ## Screenshots
+![image](https://user-images.githubusercontent.com/42701850/119550954-ab442700-bdb6-11eb-99f6-4cfd32925265.png)
