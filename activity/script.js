@@ -125,14 +125,26 @@ function setUI(sheetDB) {
     for (let i = 0; i < sheetDB.length; i++) {
         for (let j = 0; j < sheetDB[i].length; j++) {
             let cell = document.querySelector(`.col[rid="${i}"][cid="${j}"]`);
-            let { bold, italic, underline, fontFamily, fontSize, halign, value } = sheetDB[i][j];
+            let {
+                bold,
+                italic,
+                underline,
+                fontFamily,
+                fontSize,
+                halign,
+                value,
+                backgroundColor,
+                fontColor
+            } = sheetDB[i][j];
             cell.style.fontWeight = bold == true ? "bold" : "normal";
-            cell.style.fontSize = fontSize + "px";
+            cell.style.fontSize = fontSize;
             cell.style.textAlign = halign
             cell.style.fontFamily = fontFamily
             cell.style.textDecoration = underline ? "underline" : null;
             cell.style.fontStyle = italic ? "italic" : null;
             cell.innerText = value;
+            cell.style.backgroundColor = backgroundColor;
+            cell.style.fontcolor = fontColor;
         }
     }
 }
@@ -212,7 +224,7 @@ document.querySelector("#styler-align").addEventListener('change', e => {
     let align = e.target.value;
     let address = addressBar.value;
     let { rid, cid } = getRIdCIdfromAddress(address);
-    console.log(rid, cid);
+    sheetDB[rid][cid].halign = align;
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.textAlign = align;
 })
@@ -221,7 +233,7 @@ document.querySelector("#font-family").addEventListener('change', e => {
     let family = e.target.value;
     let address = addressBar.value;
     let { rid, cid } = getRIdCIdfromAddress(address);
-    console.log(rid, cid);
+    sheetDB[rid][cid].fontFamily = family;
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.fontFamily = family;
 })
@@ -229,6 +241,7 @@ document.querySelector("#font-family").addEventListener('change', e => {
 document.querySelector("#underline").addEventListener('click', e => {
     let address = addressBar.value;
     let { rid, cid } = getRIdCIdfromAddress(address);
+    sheetDB[rid][cid].underline = "underline";
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.textDecoration = "underline";
 })
@@ -238,6 +251,7 @@ document.querySelector("#italic").addEventListener('click', e => {
     let { rid, cid } = getRIdCIdfromAddress(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.fontStyle = "italic";
+    sheetDB[rid][cid].italic = "italic";
 })
 
 document.querySelector("#bold").addEventListener('click', e => {
@@ -245,18 +259,21 @@ document.querySelector("#bold").addEventListener('click', e => {
     let { rid, cid } = getRIdCIdfromAddress(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.fontWeight = "bold";
+    sheetDB[rid][cid].bold = true;
 })
 document.querySelector("#color").addEventListener('change', e => {
     let address = addressBar.value;
     let { rid, cid } = getRIdCIdfromAddress(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.color = e.target.value;
+    sheetDB[rid][cid].fontColor = e.target.value;
 })
 document.querySelector("#bg-color").addEventListener('change', e => {
     let address = addressBar.value;
     let { rid, cid } = getRIdCIdfromAddress(address);
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     cell.style.backgroundColor = e.target.value;
+    sheetDB[rid][cid].backgroundColor = e.target.value;
 })
 
 
@@ -287,6 +304,7 @@ for (let i = 0; i < Allcells.length; i++) {
         changeChildrens(cellObject);
     });
 }
+
 // formula bar enter// value -> formula set
 // old formula -> new formula  
 formulaInput.addEventListener("keydown", function (e) {
@@ -313,6 +331,8 @@ formulaInput.addEventListener("keydown", function (e) {
         changeChildrens(cellObject);
     }
 })
+
+
 // parsing 
 function evaluateFormula(formula) {
     // (A100+A20)
@@ -342,10 +362,15 @@ function evaluateFormula(formula) {
     // eval
     // ( 10 + 20 )
 }
+
+
 function setUIByFormula(value, rid, cid) {
     document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`).innerText = value;
     //  parent add yourself as a
 }
+
+
+
 // formula update db, value update , parent children array update
 function setFormula(value, formula, rid, cid, address) {
     let cellObject = sheetDB[rid][cid];
@@ -364,6 +389,8 @@ function setFormula(value, formula, rid, cid, address) {
         }
     }
 }
+
+
 function changeChildrens(cellObject) {
     // children get
     // formula reevaluate
@@ -400,5 +427,4 @@ function removeFormula(cellObject, address) {
         }
     }
     cellObject.formula = "";
-
 }

@@ -34,8 +34,8 @@ function initCurrentSheetDb() {
         for (let j = 0; j < 26; j++) {
             let cell = {
                 bold: false,
-                italic: "normal",
-                underline: "none",
+                italic: null,
+                underline: null,
                 fontFamily: "Arial",
                 fontSize: "20",
                 halign: "left",

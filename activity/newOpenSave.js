@@ -19,30 +19,24 @@ save.addEventListener("click", function () {
 })
 // downloaded file -> open read 
 // input type file -> change event file name
-open.addEventListener("change", function () {
-    // files array -> file accept-> multiple files get 
-    let workSheetDB = open.files;
 
-    let fileObj = workSheetDB[0];
-    // file reader to read the file
+
+open.addEventListener("change", function (e) {
+    // file obj arr
+    let filesArr = e.target.files;
+    let fileObj = filesArr[0];
+    console.log(fileObj);
+    // frontend api -> file reader 
     let fr = new FileReader();
-    // read as text 
     fr.readAsText(fileObj);
-    fr.onload = function () {
-        // 3 darray
-        console.log(fr.result);
-        // sheet array 
-        let workSheetDB = fr.result;
-        sheetDB = workSheetDB[0];
-        // first sheet db get 
-        // setUi call
-    }
     fr.addEventListener("load", function () {
-        console.log(fr.result);
+        let stringData = fr.result
+        sheetListArr = JSON.parse(stringData);
+        sheetArr = sheetListArr[0];
+        setUI(sheetArr);
     })
-
-    console.log("After");
-    // ui init f
 })
+
+
 
 // alert(rows);

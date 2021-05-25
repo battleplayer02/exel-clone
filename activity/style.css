@@ -112,6 +112,8 @@ body {
     margin-left: 10px;
     display: flex;
     align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 .styler-btn-container input {
@@ -135,7 +137,15 @@ body {
 .styler-btn, .styler-align {
     /* font-size: small; */
     padding: 0 10px;
-    border-right: solid 1px lightgrey;
+    border: solid 1px lightgrey;
+    border-radius: 3px;
+    height: 20px;
+    width: 30px;
+    text-align: center;
+}
+
+.styler-align {
+    width: 150px;
 }
 
 .menu-item-3 {
@@ -353,5 +363,4 @@ select option {
 select option:nth-child(even) {
     font-size: larger;
     background-color: rgba(211, 211, 211, 0.13);
-    outline: navajowhite;
 }
